@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- head definitions go here -->
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    </head>
-    <body>
-	    <h1 id="mytime"></h1>
-	<script>
-		setInterval( function(){ $('#mytime').html( "Time is " + new Date());}, 500);
-	</script>
-    </body>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0"><!-- head definitions go here -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <title>What time is It?</title>
+  <style type="text/css">
+        html {
+                background: #fff url(BillGates_Desk.jpg) center center fixed no-repeat;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+
+        }  
+
+        h1 {
+                animation: timeAnimate 5s ease 1s normal forwards;
+                box-shadow:inset 9px 9px 23px #000000;
+                background:-webkit-gradient(radial, 165 0, 0, 33 -246, 461, from(#B1E2D0), to(#B74E28));
+                padding: 50px 50px 50px 50px;
+                color: white;
+                text-align: center;
+                text-shadow: 5px 5px 5px #000000;
+                border-radius: 50px;
+
+        }
+        @keyframes timeAnimate {
+                  0% {
+                          opacity: 0;
+                          transform: rotate(-540deg) scale(0);
+                  }
+
+                  50% {
+                          opacity: 1;
+                          transform: rotate(0) scale(1);
+                  }
+        }
+
+        img {
+                border: 5px solid red;
+                border-radius: 4px;
+                padding: 5px;
+                width: 25%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+        }
+  </style>
+</head>
+<body>
+  <div style="padding-top: 15%"></div>
+  <h1 id="mytime"></h1>
+  <script>
+                setInterval( function(){ $('#mytime').html( "Time is " + new Date());}, 500);
+  </script> <img src="mickeyMouse.gif">
+</body>
 </html>

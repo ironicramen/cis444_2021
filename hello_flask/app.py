@@ -10,11 +10,11 @@ USER_PASSWORDS = { "cjardin": "strong password"}
 
 IMGS_URL = {
             "DEV" : "/static",
-            "INT" : "https://cis-444-fall-2021.s3.us-west-2.amazonaws.com/images",
+            "INT" : "https://cis444public.s3.us-west-1.amazonaws.com/images",
             "PRD" : "http://d2cbuxq67vowa3.cloudfront.net/images"
             }
 
-CUR_ENV = "PRD"
+CUR_ENV = "INT"
 
 @app.route('/') #endpoint
 def index():
@@ -46,14 +46,15 @@ def auth():
 #Assigment 2
 @app.route('/ss1') #endpoint
 def ss1():
-    return render_template('server_time.html', server_time= str(datetime.datetime.now()) )
+    return render_template('server_time.html', server_time= str(datetime.datetime.now()), img_url=IMGS_URL[CUR_ENV] )
 
 @app.route('/getTime') #endpoint
 def get_time():
     return json_response(data={"password" : request.args.get('password'),
                                 "class" : "cis44",
                                 "serverTime":str(datetime.datetime.now())
-                            }
+                            },
+                            img_url=IMGS_URL[CUR_ENV]
                 )
 
 

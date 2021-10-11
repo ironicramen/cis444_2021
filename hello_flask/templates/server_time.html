@@ -8,10 +8,13 @@
 	            <script>
 
                			 setInterval( function(){ $('#mytime').html( "Client Time is " + new Date());}, 500);
-				 setInterval( function(){ $('#hello').html( "hello");}, 500);
-        	</script>
+				setInterval( function(){ $('#hello').html( "Hello Bill");}, 500);;
+		    </script>
+
 	    <h1 id="mytime"></h1>
-	    <h2 id="hello"> </h2>
+	    <h2 id="hello" style="color: Blue"></h2>
+	    <img src="{{img_url}}/BillGates_Desk.jpg" alt = "Its Bill on a Desk" style="width:500px;">
 	    <h1>Server Time is {{server_time}}</h1>
+    	    
     </body>
 </html>
