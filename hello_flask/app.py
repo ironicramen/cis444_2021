@@ -98,5 +98,24 @@ def hellodb():
     global_db_con.commit()
     return json_response(status="good")
 
+@app.route('/userlogin', methods=['POST']) #user login endpoint
+def userlogin():
+    cur = global_db_con.cursor()
+    u = request.form['username']
+    salted = bcrypt.hashpw( bytes(request.form['password'], 'utf-8' ), bcrypt.gensalt(10))
+    cur.execute(f"select username from users where username = '{u}';")
+    validUser = cur.fetchone()[0]
+    cur.execute(f"select password from users where username = '{u}';")
+    validPass = cur.fetchone()[0]
+    validPass = bytes(validPass, 'utf-8')
+    if( bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), validPass)):
+        return jsonify(validUser)
+    else:
+        return jsonify("Invalid User")
+    
+@app.route( '/userSignUp', methods=['POST'])
+def userSignUp():
+    return jsonify ("Welcome to Books on Books!")
+
 
 app.run(host='0.0.0.0', port=80)
