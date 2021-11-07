@@ -98,24 +98,48 @@ def hellodb():
     global_db_con.commit()
     return json_response(status="good")
 
+
+#### Assignment 3 ####
+
+
 @app.route('/userlogin', methods=['POST']) #user login endpoint
 def userlogin():
     cur = global_db_con.cursor()
     u = request.form['username']
-    salted = bcrypt.hashpw( bytes(request.form['password'], 'utf-8' ), bcrypt.gensalt(10))
-    cur.execute(f"select username from users where username = '{u}';")
-    validUser = cur.fetchone()[0]
-    cur.execute(f"select password from users where username = '{u}';")
-    validPass = cur.fetchone()[0]
-    validPass = bytes(validPass, 'utf-8')
-    if( bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), validPass)):
-        return jsonify(validUser)
+    cur.execute(f"SELECT password FROM users WHERE username = '{u}';")
+    p = cur.fetchone()[0]
+    if(p == None):
+        print("User not in database")
+        return "FALSE"
     else:
-        return jsonify("Invalid User")
+        p = bytes(p,'utf-8')
+        checkP = bcrypt.checkpw(bytes(request.form['password'], 'utf-8'),p)
+        if(checkP):
+            jwt_str = jwt.encode({"username" : u}, JWT_SECRET, algorithm="HS256")
+            return json_response(jwt=jwt_str)
+        else:
+            print("No password match!")
+            return "FALSE"
     
-@app.route( '/userSignUp', methods=['POST'])
+@app.route( '/userSignUp', methods=['POST']) #user signup endpoint
 def userSignUp():
-    return jsonify ("Welcome to Books on Books!")
+    u = request.form['new_username'] #username variable from user input
+    today = datetime.datetime.now()
+    strdate = today.strftime('%Y-%m-%d')
+    cur = global_db_con.cursor() #database cursor
+    cur.execute(f"SELECT * FROM users WHERE username = '{u}';")
+    if cur.fetchone() == None: # 
+        saltyP = bcrypt.hashpw(bytes(request.form['new_password'], 'utf-8'), bcrypt.gensalt(10))
+        unsaltyP = saltyP.decode('utf-8')
+        print(unsaltyP)
+        print(strdate)
+        cur.execute(f"INSERT INTO users (username, password, acct_date, recent_act) VALUES ('{u}', '{unsaltyP}', '{strdate}', 'FALSE');")
+        global_db_con.commit()
+        jwt_str = jwt.encode({"username" : u}, JWT_SECRET, algorithm="HS256")
+        return json_response(jwt=jwt_str)
+    else:
+        print("Username Taken")
+        return "FALSE"
 
 
 app.run(host='0.0.0.0', port=80)
