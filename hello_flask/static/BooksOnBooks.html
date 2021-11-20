@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- head definitions go here -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+	<script>
+		function check_form(){
+			if($('#username').val().length == 0) { 
+				alert("No Username Entered"); return false; }
+			else { return true;}
+		}
+		
+		function check_newuser_form(){
+			if($('#new_username').val().length == 0) { 
+				alert("No Username Entered"); return false; }
+			else { return true;}
+		}
+
+	    </script>
+	    
+	<div id="login">
+	    <form action="/userlogin" method="POST">
+		    <h1> MMMMMM Books </h1>
+		    <label for="username">Username:</label><br>
+  				<input type="text" id="username" name="username" value=""><br>
+  			<label for="password">Password:</label><br>
+  				<input type="password" id="password" name="password" value=""><br><br>
+  			<input type="submit" value="Login" onclick="return check_form();">
+	</form>
+	</div>
+	<div id="signup">
+		<form action="/userSignUp" method="POST">
+		<h2> Signup now to get your hands on these sweet books! </h2>
+	
+		    <label for="username">Username:</label><br>
+  				<input type="text" id="new_username" name="new_username" value=""><br>
+  			<label for="password">Password:</label><br>
+  				<input type="password" id="new_password" name="new_password" value=""><br><br>
+  			<input type="submit" value="Sign Up" onclick="return check_newuser_form();">
+
+
+	
+	</div>
+	<div id="books">
+	</div>
+
+
+
+    </body>
+</html>

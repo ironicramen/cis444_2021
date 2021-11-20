@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="/static/cis444.js"></script>
+</head>
+
+<body>
+
+	<script>
+
+		function send_login() {
+			$.post("/open_api/login", { "username": $('#uname').val(), "password": $('#password').val() },
+				function (data, textStatus) {
+					//this gets called when browser receives response from server
+					console.log(data.token);
+					//Set global JWT
+					jwt = data.token;
+					//make secure call with the jwt
+					get_books();
+				}, "json").fail(function (response) {
+					//this gets called if the server throws an error
+					console.log("error");
+					console.log(response);
+				});
+			return false;
+		}
+		function send_signup() {
+			$.post("/open_api/signup", { "username": $('#uname').val(), "password": $('#password').val() },
+				function (data, textStatus) {
+					//this gets called when browser receives response from server
+					console.log(data.token);
+					//Set global JWT
+					//jwt = data.token;
+					//make secure call with the jwt
+					//get_books();
+				}, "json").fail(function (response) {
+					//this gets called if the server throws an error
+					console.log("error");
+					console.log(response);
+				});
+			return false;
+		}
+
+		function get_books() {
+			//make secure call with the jwt
+			secure_get_with_token("/secure_api/get_books", {}, function (data) {
+				console.log("got books");
+				console.log(data);
+				$('#buybook').show();
+			},
+				function (err) { console.log(err) });
+		}
+
+
+		function buy_book(book_id) {
+			//make secure call with the jwt
+			secure_get_with_token("/secure_api/get_books", { "book_id": book_id }, function (data) { console.log("got books"); console.log(data) },
+				function (err) { console.log(err) });
+		}
+
+		$("#SignupButton").on('click', function () {
+			$("#userForm").attr("submit", "return send_signup();");
+		});
+		$("#LoginButton").on('click', function () {
+			$("#userForm").attr("submit", "return send_login();");
+		});
+
+	</script>
+
+
+	<div id="userForm">
+		<form>
+			<label for="uname">Username:</label><br>
+			<input type="text" id="uname" name="uname" value="John"><br>
+			<label for="password">Password:</label><br>
+			<input type="password" id="password" name="password" value="12212"><br><br>
+			<button id="SignupButton" class="btn btn-info primary" type="submit">Sign Up</button>
+			<button id="LoginButton" class="btn btn-info primary" type="submit">Login</button>
+		</form>
+	</div>
+	<button id="buybook" onclick="buy_book(1234)" style="display:none">Buy Book</button>
+</body>
+
+</html>
