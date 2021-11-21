@@ -27,21 +27,23 @@ def handle_request():
     if row is None:
         logger.debug("Username Available")
         saltedPass = bcrypt.hashpw(bytes(request.form['password'], 'utf-8'), bcrypt.gensalt(12))
-        userInsertion = sql.SQL("INSERT INTO {table} {fields} VALUES (%s ,%s)").format(
+        utfSaltedPass = saltedPass.decode('utf-8')
+        userInsertion = sql.SQL("INSERT INTO {table} ( {fields} ) VALUES (%s ,%s)").format(
             table = sql.Identifier('users'),
-            fields = sql.SQL(',').join([
+            fields = sql.SQL(', ').join([
                 sql.Identifier('username'),
                 sql.Identifier('password'),
             ]))
 
-        cur.execute(userInsertion, (user['sub'],) saltedPass)
+        data = ((user['sub'],), utfSaltedPass)
+        cur.execute(userInsertion, data)
         g.db.commit()
         logger.debug("User Added, Database Commited")
         return json_response(status_=201, message = 'Username Created')
         
     else:
-    logger.debug("Username Taken")
-    return json_response(status_=401, message = 'Username In Use')
+        logger.debug("Username Taken")
+        return json_response(status_=401, message = 'Username In Use')
 
 
     

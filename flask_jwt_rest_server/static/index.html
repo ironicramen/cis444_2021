@@ -28,7 +28,7 @@
 			return false;
 		}
 		function send_signup() {
-			$.post("/open_api/signup", { "username": $('#uname').val(), "password": $('#password').val() },
+			$.post("/open_api/signup", { "username": $('#new_uname').val(), "password": $('#new_password').val() },
 				function (data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
@@ -61,26 +61,32 @@
 				function (err) { console.log(err) });
 		}
 
-		$("#SignupButton").on('click', function () {
-			$("#userForm").attr("submit", "return send_signup();");
-		});
-		$("#LoginButton").on('click', function () {
-			$("#userForm").attr("submit", "return send_login();");
-		});
 
 	</script>
 
 
-	<div id="userForm">
+	<div id="login">
 		<form>
 			<label for="uname">Username:</label><br>
 			<input type="text" id="uname" name="uname" value="John"><br>
 			<label for="password">Password:</label><br>
 			<input type="password" id="password" name="password" value="12212"><br><br>
-			<button id="SignupButton" class="btn btn-info primary" type="submit">Sign Up</button>
-			<button id="LoginButton" class="btn btn-info primary" type="submit">Login</button>
+			<input type="submit" value="Login" onclick="return send_login();">
 		</form>
 	</div>
+
+	<div id="signup">
+		<form>
+			<label for="new_uname">Username:</label><br>
+			<input type="text" id="new_uname" name="new_uname" value=""><br>
+			<label for="new_password">Password:</label><br>
+			<input type="password" id="new_password" name="new_password" value=""><br><br>
+			<input type="submit" value="Signup" onclick="return send_signup();">
+		</form>
+	</div>
+
+
+
 	<button id="buybook" onclick="buy_book(1234)" style="display:none">Buy Book</button>
 </body>
 
