@@ -5,6 +5,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="/static/cis444.js"></script>
+	<title>Books on Books Bookstore</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 
 <body>
@@ -32,10 +34,6 @@
 				function (data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
-					//Set global JWT
-					//jwt = data.token;
-					//make secure call with the jwt
-					//get_books();
 				}, "json").fail(function (response) {
 					//this gets called if the server throws an error
 					console.log("error");
@@ -47,8 +45,9 @@
 		function get_books() {
 			//make secure call with the jwt
 			secure_get_with_token("/secure_api/get_books", {}, function (data) {
-				console.log("got books");
+				//console.log("got books");
 				console.log(data);
+				
 				$('#buybook').show();
 			},
 				function (err) { console.log(err) });
