@@ -29,6 +29,7 @@
 				});
 			return false;
 		}
+
 		function send_signup() {
 			$.post("/open_api/signup", { "username": $('#new_uname').val(), "password": $('#new_password').val() },
 				function (data, textStatus) {
@@ -45,9 +46,8 @@
 		function get_books() {
 			//make secure call with the jwt
 			secure_get_with_token("/secure_api/get_books", {}, function (data) {
-				//console.log("got books");
+				console.log("got books");
 				console.log(data);
-				
 				$('#buybook').show();
 			},
 				function (err) { console.log(err) });
@@ -67,9 +67,9 @@
 	<div id="login">
 		<form>
 			<label for="uname">Username:</label><br>
-			<input type="text" id="uname" name="uname" value="John"><br>
+			<input type="text" id="uname" name="uname" value=""><br>
 			<label for="password">Password:</label><br>
-			<input type="password" id="password" name="password" value="12212"><br><br>
+			<input type="password" id="password" name="password" value=""><br><br>
 			<input type="submit" value="Login" onclick="return send_login();">
 		</form>
 	</div>
@@ -84,9 +84,8 @@
 		</form>
 	</div>
 
-
-
 	<button id="buybook" onclick="buy_book(1234)" style="display:none">Buy Book</button>
+		</div>
 </body>
 
 </html>
