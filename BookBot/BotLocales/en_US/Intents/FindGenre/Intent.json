@@ -1,1 +1,48 @@
-{"name":"FindGenre","identifier":"2TCQR5OINK","description":null,"parentIntentSignature":null,"sampleUtterances":[{"utterance":"I want to buy a book"},{"utterance":"Do you have {bookGenre} books?"},{"utterance":"I want to buy a {bookGenre} book."},{"utterance":"Do you have books?"},{"utterance":"Can I buy a book?"}],"intentConfirmationSetting":null,"intentClosingSetting":null,"inputContexts":null,"outputContexts":[{"name":"price","timeToLiveInSeconds":90,"turnsToLive":1}],"kendraConfiguration":null,"dialogCodeHook":{"enabled":false},"fulfillmentCodeHook":{"postFulfillmentStatusSpecification":null,"fulfillmentUpdatesSpecification":null,"enabled":true},"slotPriorities":[{"priority":1,"slotName":"bookGenre"}]}
+{
+    "name": "FindGenre",
+    "identifier": "2TCQR5OINK",
+    "description": null,
+    "parentIntentSignature": null,
+    "sampleUtterances": [
+        {
+            "utterance": "I want to buy a book"
+        },
+        {
+            "utterance": "Do you have {bookGenre} books?"
+        },
+        {
+            "utterance": "I want to buy a {bookGenre} book."
+        },
+        {
+            "utterance": "Do you have books?"
+        },
+        {
+            "utterance": "Can I buy a book?"
+        }
+    ],
+    "intentConfirmationSetting": null,
+    "intentClosingSetting": null,
+    "inputContexts": null,
+    "outputContexts": [
+        {
+            "name": "price",
+            "timeToLiveInSeconds": 90,
+            "turnsToLive": 1
+        }
+    ],
+    "kendraConfiguration": null,
+    "dialogCodeHook": {
+        "enabled": false
+    },
+    "fulfillmentCodeHook": {
+        "postFulfillmentStatusSpecification": null,
+        "fulfillmentUpdatesSpecification": null,
+        "enabled": true
+    },
+    "slotPriorities": [
+        {
+            "priority": 1,
+            "slotName": "bookGenre"
+        }
+    ]
+}
