@@ -1,1 +1,49 @@
-{"name":"bookGenre","identifier":"3YIVNSNSEM","description":null,"slotTypeValues":[{"synonyms":null,"sampleValue":{"value":"Romance"}},{"synonyms":null,"sampleValue":{"value":"Fantasy"}},{"synonyms":null,"sampleValue":{"value":"Mystery"}},{"synonyms":[{"value":"Sci Fi"},{"value":"Science Fiction"}],"sampleValue":{"value":"Sci-Fi"}},{"synonyms":null,"sampleValue":{"value":"Drama"}}],"parentSlotTypeSignature":null,"valueSelectionSetting":{"resolutionStrategy":"TOP_RESOLUTION","regexFilter":null}}
+{
+    "name": "bookGenre",
+    "identifier": "3YIVNSNSEM",
+    "description": null,
+    "slotTypeValues": [
+        {
+            "synonyms": null,
+            "sampleValue": {
+                "value": "Romance"
+            }
+        },
+        {
+            "synonyms": null,
+            "sampleValue": {
+                "value": "Fantasy"
+            }
+        },
+        {
+            "synonyms": null,
+            "sampleValue": {
+                "value": "Mystery"
+            }
+        },
+        {
+            "synonyms": [
+                {
+                    "value": "Sci Fi"
+                },
+                {
+                    "value": "Science Fiction"
+                }
+            ],
+            "sampleValue": {
+                "value": "Sci-Fi"
+            }
+        },
+        {
+            "synonyms": null,
+            "sampleValue": {
+                "value": "Drama"
+            }
+        }
+    ],
+    "parentSlotTypeSignature": null,
+    "valueSelectionSetting": {
+        "resolutionStrategy": "TOP_RESOLUTION",
+        "regexFilter": null
+    }
+}
